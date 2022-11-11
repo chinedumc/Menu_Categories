@@ -1,8 +1,9 @@
 import './App.css';
+import FetchFood from './components/FetchFood';
 
 function App() {
   return (
-    <div>Hello world</div>
+    <div><FetchFood /></div>
   );
 }
 
