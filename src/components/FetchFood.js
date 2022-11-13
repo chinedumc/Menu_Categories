@@ -6,6 +6,13 @@ const FetchFood = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [ArrFood, setArrFood] = useState([]);
 
+  const NotInterestedHandler = (idCategory) => {
+		let newArrFood = ArrFood.filter(
+			(AnyFood) => AnyFood.idCategory !== idCategory
+		);
+		setArrFood(newArrFood);
+	};
+
 	const url = "https://www.themealdb.com/api/json/v1/1/categories.php";
 
 	const fetchFood = async () => {
@@ -35,9 +42,19 @@ const FetchFood = () => {
 			</main>
 		)
 	}
+
+  if(ArrFood.length === 0) {
+    return (
+      <>
+      <h2>No Food Category Left</h2>
+      <button onClick={fetchFood}>Reset Food Categories</button>
+      </>
+    )
+  }
+  
 	return (
 		<main>
-			<AllFood ArrFood={ArrFood}></AllFood>
+			<AllFood ArrFood={ArrFood} NotInterestedHandler={NotInterestedHandler}></AllFood>
 		</main>
 	);
 };
